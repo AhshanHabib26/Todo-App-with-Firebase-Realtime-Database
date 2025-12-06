@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import Container from "../utils/Container";
 
 export default function Navbar() {
   const navigate = useNavigate();
@@ -14,12 +15,25 @@ export default function Navbar() {
 
   if (!user) return null;
   return (
-    <div>
-      <div>
-        <h2>{user.displayName || "Anonymas"}</h2>
-        <p>{user.email || "Searching...."}</p>
-      </div>
-      <button onClick={handleLogout}>Logout</button>
+    <div className="bg-teal-800 text-white py-2">
+      <Container>
+        <div className="flex items-center justify-between">
+          <div>
+            <h2 className="text-lg font-medium">
+              {user.displayName || "Anonymas"}
+            </h2>
+            <p className="text-xs font-mono -mt-1.5">
+              {user.email || "Searching...."}
+            </p>
+          </div>
+          <button
+            className="bg-red-600 px-3 py-1 text-lg font-mono rounded cursor-pointer hover:bg-red-500"
+            onClick={handleLogout}
+          >
+            Logout
+          </button>
+        </div>
+      </Container>
     </div>
   );
 }
